@@ -8,6 +8,7 @@ function Navbar() {
         backgroundColor: "#333",
         display: "flex",
         gap: "15px",
+        justifyContent: "center", // <-- Add this line for ALX
       }}
     >
       <Link style={{ color: "white" }} to="/">Home</Link>
