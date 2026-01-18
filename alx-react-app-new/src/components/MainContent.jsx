@@ -9,6 +9,9 @@ function MainContent() {
     >
       <h2 style={{ color: 'darkgreen' }}>Welcome to My Page</h2>
       <p>This is the main content section.</p>
+      <p style={{ fontSize: '16px' }}>
+        I love to visit New York, Paris, and Tokyo.
+      </p>
     </main>
   );
 }
