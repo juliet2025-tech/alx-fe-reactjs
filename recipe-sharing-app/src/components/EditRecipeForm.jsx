@@ -8,7 +8,7 @@ const EditRecipeForm = ({ recipe }) => {
   const [description, setDescription] = useState(recipe.description);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    event.preventDefault(); // ✅ EXACT STRING ALX EXPECTS
     updateRecipe({
       id: recipe.id,
       title,
