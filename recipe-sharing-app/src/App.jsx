@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SearchBar from './components/SearchBar';
+
 
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
