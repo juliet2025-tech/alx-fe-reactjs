@@ -48,6 +48,28 @@ export const useRecipeStore = create((set, get) => ({
       ),
     });
   },
+   // ✅ Favorites actions
+  addFavorite: (recipeId) => {
+    const { favorites } = get();
+    if (!favorites.includes(recipeId)) {
+      set({ favorites: [...favorites, recipeId] });
+    }
+  },
+
+  removeFavorite: (recipeId) => {
+    const { favorites } = get();
+    set({ favorites: favorites.filter((id) => id !== recipeId) });
+  },
+
+  // ✅ Recommendations
+  generateRecommendations: () => {
+    const { recipes, favorites } = get();
+    const recommended = recipes.filter(
+      (recipe) => !favorites.includes(recipe.id) && Math.random() > 0.5
+    );
+    set({ recommendations: recommended });
+  },
+
 }));
 
 
