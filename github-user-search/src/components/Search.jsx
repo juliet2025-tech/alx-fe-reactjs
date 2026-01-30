@@ -144,5 +144,7 @@ function Search() {
     </div>
   );
 }
+{error && <p className="text-red-600 mt-2 text-center">Looks like we cant find the user</p>}
+
 
 export default Search;
