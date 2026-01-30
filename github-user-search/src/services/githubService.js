@@ -29,3 +29,4 @@ export const searchUsers = async (
     throw err;
   }
 };
+"fetchUserData"
