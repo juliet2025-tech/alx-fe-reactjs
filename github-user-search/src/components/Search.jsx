@@ -1,57 +1,82 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
 
-function Search() {
+function Search({ onSearch }) {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username) return;
-
-    setLoading(true);
-    setError(false);
-    setUser(null);
-
-    try {
-      const data = await fetchUserData(username);
-      setUser(data);
-    } catch (err) {
+    if (!username) {
       setError(true);
-    } finally {
-      setLoading(false);
+      return;
     }
+
+    setError(false);
+
+    onSearch({
+      username,
+      location,
+      minRepos,
+    });
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-6 rounded-lg shadow-md flex flex-col gap-4 md:flex-row md:items-end"
+    >
+      <div className="flex flex-col w-full">
+        <label className="text-sm font-medium">Username</label>
         <input
           type="text"
-          placeholder="Search GitHub username"
+          placeholder="e.g. octocat"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="border rounded px-3 py-2"
+          required
         />
-        <button type="submit">Search</button>
-      </form>
+      </div>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>Looks like we cant find the user</p>}
+      <div className="flex flex-col w-full">
+        <label className="text-sm font-medium">Location</label>
+        <input
+          type="text"
+          placeholder="e.g. Nigeria"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="border rounded px-3 py-2"
+        />
+      </div>
 
-      {user && (
-        <div>
-          <img src={user.avatar_url} alt={user.login} width="100" />
-          <h3>{user.name || user.login}</h3>
-          <a href={user.html_url} target="_blank" rel="noreferrer">
-            View GitHub Profile
-          </a>
-        </div>
+      <div className="flex flex-col w-full">
+        <label className="text-sm font-medium">Min Repos</label>
+        <input
+          type="number"
+          placeholder="e.g. 10"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+          className="border rounded px-3 py-2"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800"
+      >
+        Search
+      </button>
+
+      {error && (
+        <p className="text-red-600 text-sm">
+          Username is required
+        </p>
       )}
-    </div>
+    </form>
   );
 }
 
 export default Search;
+
