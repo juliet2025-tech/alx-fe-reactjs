@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import recipesData from "../data.json";
+import recipesData from "../data.json";
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
