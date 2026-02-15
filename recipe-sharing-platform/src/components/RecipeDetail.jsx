@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom"; // for dynamic routing
 import recipesData from "../data.json"; // import your mock data
+import recipesData from "../data.json";
+
 
 const RecipeDetail = () => {
   const { id } = useParams(); // get recipe ID from URL
