@@ -67,3 +67,4 @@ const RecipeDetail = () => {
 };
 
 export default RecipeDetail;
+"instructions"
