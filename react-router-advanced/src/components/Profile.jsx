@@ -10,6 +10,12 @@ function Profile() {
         <Link to="settings">Settings</Link>
       </nav>
 
+
+       <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
+
       <Outlet />
     </div>
   );
