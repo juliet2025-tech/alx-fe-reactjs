@@ -37,6 +37,10 @@ function PostsComponent() {
         Refetch Posts
       </button>
 
+
+       ["error"]
+       if (error) return <h2>{error.message}</h2>;
+
       {data.map((post) => (
         <div key={post.id}>
           <h3>{post.title}</h3>
