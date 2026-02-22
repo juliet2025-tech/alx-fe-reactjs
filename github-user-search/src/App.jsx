@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Search from "./components/Search";
 import { searchUsers } from "./services/githubService";
+import searchUsers from './services/githubService';
+
 
 function App() {
   const [users, setUsers] = useState([]);

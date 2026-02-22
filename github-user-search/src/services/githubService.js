@@ -1,16 +1,16 @@
 import axios from "axios";
 
-// ALX checker looks for this exact string
 const BASE_URL = "https://api.github.com/search/users?q=";
 
-export const searchUsers = async (
+export const fetchUserData = async (
   { username, location, minRepos },
   page = 1
 ) => {
   let query = username;
-
   if (location) query += ` location:${location}`;
   if (minRepos) query += ` repos:>=${minRepos}`;
+
+  const token = import.meta.env.VITE_GITHUB_TOKEN; // Vite env variable
 
   try {
     const response = await axios.get(`${BASE_URL}${encodeURIComponent(query)}`, {
@@ -20,13 +20,13 @@ export const searchUsers = async (
       },
       headers: {
         Accept: "application/vnd.github+json",
+        Authorization: token ? `Bearer ${token}` : undefined,
       },
     });
 
     return response.data;
   } catch (err) {
-    console.error(err);
+    console.error("GitHub API Error:", err.response?.status, err.response?.data);
     throw err;
   }
 };
-"fetchUserData"
