@@ -9,6 +9,8 @@ function PostsComponent() {
     return response.json();
   };
 
+  ["error"]
+
   const {
     data,
     isLoading,
